@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Symfony\Component\Finder\Finder;
@@ -36,21 +37,25 @@ class CustomRouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-	$this->customWebRoutes();
-        //$this->mapApiRoutes();
+    	$this->customWebRoutes();
+        $this->mapApiRoutes();
         //$this->mapApiJwtRoutes();
     }
 
     protected function mapApiRoutes()
     {
         $files = Finder::create()
-            ->in(app_path('Http/Controllers/Api'))
-            ->name('routes.php');
+            ->in(app_path('Http/Controllers'))
+            ->name('api_routes.php');
 
         foreach($files as $file) {
-            Route::prefix('api')
+            $prefix = strtolower($file->getRelativePath());
+            $relativeToNamespace = str_replace('/','\\',$file->getRelativePath());
+            $autoNamespace = "{$this->namespace}\\{$relativeToNamespace}";
+
+            Route::prefix($prefix)
                 ->middleware(['api'])
-                ->namespace($this->namespace)
+                ->namespace($autoNamespace)
                 ->group($file->getRealPath());
         }
     }
@@ -83,9 +88,20 @@ class CustomRouteServiceProvider extends ServiceProvider
             ->name('routes.php');
 
         foreach($files as $file) {
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group($file->getRealPath());
+            $prefix = strtolower($file->getRelativePath());
+            $relativeToNamespace = str_replace('/','\\',$file->getRelativePath());
+            $autoNamespace = "{$this->namespace}\\{$relativeToNamespace}";
+
+            if(empty($prefix)) {
+                Route::middleware('web')
+                    ->namespace($this->namespace)
+                    ->group($file->getRealPath());
+            } else {
+                Route::prefix($prefix)
+                    ->middleware('web')
+                    ->namespace($autoNamespace)
+                    ->group($file->getRealPath());
+            }
         }
     }
 }

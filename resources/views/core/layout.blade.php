@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>IAServer LTE</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -47,16 +48,21 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 --}}
   @yield('endcss')
+  <style>
+    html, body {
+      height: 100%;
+    }
+  </style>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-<body class="hold-transition skin-purple layout-top-nav">
+<body class="hold-transition skin-green">
 <div class="wrapper">
 
   @include('core.header')
   <!-- Full Width Column -->
   <div class="content-wrapper">
     <div id="vuelte">
-	@yield('contenido')
+	  @yield('contenido')
     </div>
     <!-- /.container -->
   </div>
@@ -113,6 +119,10 @@
       $('.nav-tabs a[href="' + document.location.hash + '"]').tab ('show');
     }
   });
+
+  function remoteLink(uri) {
+    document.getElementById("vuelte").innerHTML='<object id="objectFrame" type="text/html" data="'+uri+'"  width="100%" height="1000" style="min-height: 800px;"></object>';
+  }
 </script>
 
 @yield('endjs')

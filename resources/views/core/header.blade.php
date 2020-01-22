@@ -1,56 +1,45 @@
+<!-- Main Header -->
 <header class="main-header">
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>IA</b>5</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>IAServer</b> 5.0</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="/" class="navbar-brand"><b>IAServer</b>LTE</a>
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                <ul class="nav navbar-nav">
-                    @include('core.header.menu')
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-            <!-- Navbar Right Menu -->
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    @include('core.header.toolbar')
-                </ul>
-            </div>
-            <!-- /.navbar-custom-menu -->
-        </div>
-        <!-- /.container-fluid -->
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
     </nav>
 </header>
 
-<nav class="bg-navy" id="header_search" style="display:none;">
-    <div class="container">
-        <ul class="nav navbar-nav">
+<!-- Left side column. contains the sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">NAVEGACION</li>
             <li>
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="header_search" class="form-control" placeholder="Buscar OP, Modelo, Componente" autocomplete="off">
-                        <span class="input-group-btn">
-                        <button type="submit" class="btn btn-flat">
-                              <i class="fa fa-search"></i>
-                        </button>
-                        </span>
-                    </div>
-                </form>
+                <a href="{{ route('npmpicker.index') }}">
+                    <i class="fa fa-signal"></i> <span>Control de pickups</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:remoteLink('http://localhost:8002/aplicacion/npmpicker/')">
+                    <i class="fa fa-dot-circle-o"></i> <span>Control de pickups</span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-red">old</small>
+                    </span>
+                </a>
             </li>
         </ul>
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-
-@section('endjs')
-    <script>
-        function toggleHeaderSearch() {
-            $('#header_search').toggle();
-        }
-    </script>
-@append
+    </section>
+    <!-- /.sidebar -->
+</aside>
