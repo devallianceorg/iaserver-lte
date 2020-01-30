@@ -2,24 +2,17 @@
 
 namespace App\Http\Controllers\Npmpicker\Api\v1;
 
-use App\Http\Controllers\Api\Util\ApiConsume;
+use App\Http\Controllers\Core\ApiConsume;
 use App\Http\Controllers\Controller;
 
 class Npmpicker extends Controller
 {
     public function GetLinea($fecha,$id_linea,$turno)
-    {
-        $params = [
-            'id_linea' => $id_linea,
-            'turno' => $turno,
-            'fecha' => '"'.$fecha.'"',
-            'mode'=> 'GetAll'
-        ];
-        
+    {        
         // Consume API
-        $uri = 'iaserver-v2';
+        $uri = 'iaserver-api';
         $api = new ApiConsume($uri);
-        $api->get('aplicacion/npmpicker/jsonservice/npmpicker.php',$params);
+        $api->get("npmpicker/v1/info/{$fecha}/{$id_linea}/{$turno}");
         if($api->hasError()) { return $api->getError(); }
 
         return $api->response();
@@ -27,15 +20,10 @@ class Npmpicker extends Controller
 
     public function GetStat($id_stat=null)
     {
-        $params = [
-            'id_stat' => $id_stat,
-            'mode'=> 'GetFeedersInestables'
-        ];
-
         // Consume API
-        $uri = 'iaserver-v2';
+        $uri = 'iaserver-api';
         $api = new ApiConsume($uri);
-        $api->get('aplicacion/npmpicker/jsonservice/npmpicker.php',$params);
+        $api->get("npmpicker/v1/stat/{$id_stat}");
         if($api->hasError()) { return $api->getError(); }
 
         return $api->response();

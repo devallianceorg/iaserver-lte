@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Util;
+namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\ApiAuthMode;
