@@ -9,41 +9,64 @@
     </section>
 
     <section class="content">
-    @if(isset($info['error']))
+    @if(isset($error) && count($error))
         <div class="alert alert-danger">
             <h4><i class="icon fa fa-ban"></i> Error!</h4>
-            {{ $info['error'] }}
+            @foreach($error as $method => $err)
+                <div>
+                    * <b>{{ $method }}</b>: {{ (isset($err['error'])) ? $err['error'] : $err }}
+                </div>
+            @endforeach
         </div>
     @else
         <div class="row">
                 <div class="col-sm-2">
                     <div class="box box-widget">
-                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="box-header">
+                            <h3 class="box-title">Lineas activas</h3>
+                        </div>
                         <div class="box-footer no-padding">
                             <ul class="nav nav-stacked">
-                                @foreach($info['lineas']['result'] as $id => $item )
-                                    <li><a href="?linea={{$item['id_linea']}}">SMD-{{ $item['id_linea'] }}<span class="pull-right badge bg-red">{{ $item['inestable'] }}</span></a></li>
-                                @endforeach
+                                @if(isset($lineas) && count($lineas)>0)
+                                    @foreach($lineas as $id_linea => $item )
+                                        @if($id_linea==$linea)
+                                            <li><a href="#" class="bg-success"><span class="fa fa-hand-o-right"></span> SMD-{{$id_linea}}</a></li>
+                                        @else
+                                        <li><a href="?linea={{$id_linea}}&fecha={{ $fecha }}">SMD-{{ $id_linea }}</a></li>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <li>
+                                        <a href="#">
+                                            Sin lineas activas
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-10">
-
-                    <div class="box">
+                    <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Detalle de SMD-{{ $linea }}</h3>
+                            <h3 class="box-title">Detalles de SMD-{{ $linea }} dia <b>{{ $fecha }}</b> turno <b>{{ $turno }}</b></h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            </div>
                         </div>
+                        <!-- /.box-header -->
                         <div class="box-body">
-
-                    <pre>
-                    @json($info['feeders'], JSON_PRETTY_PRINT);
-                    </pre>
-
+                            @if(count($feeders)==0)
+                                No hay feeders inestables
+                            @else
+                                @include('npmpicker.feeder_table')
+                            @endif
+                            <!-- /.table-responsive -->
                         </div>
                         <!-- /.box-body -->
                     </div>
-
 
 
                 </div>

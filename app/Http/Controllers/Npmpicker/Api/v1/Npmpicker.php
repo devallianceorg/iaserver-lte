@@ -7,26 +7,52 @@ use App\Http\Controllers\Controller;
 
 class Npmpicker extends Controller
 {
-    public function GetLinea($fecha,$id_linea,$turno)
-    {        
+    private $errors = [];
+
+    public function GetPing($fecha)
+    {
         // Consume API
         $uri = 'iaserver-api';
         $api = new ApiConsume($uri);
-        $api->get("npmpicker/v1/info/{$fecha}/{$id_linea}/{$turno}");
-        if($api->hasError()) { return $api->getError(); }
-
-        return $api->response();
+        $api->get("npmpicker/v1/resume/{$fecha}");
+        $this->prepareError($api,__FUNCTION__);
+        return $api;
     }
 
-    public function GetStat($id_stat=null)
+    public function GetFeeders($fecha,$id_linea,$turno='M',$estado='inestable')
+    {
+        // Consume API
+        $uri = 'iaserver-api';
+        $api = new ApiConsume($uri);
+        $api->get("npmpicker/v1/resume/{$fecha}/{$id_linea}/{$turno}/{$estado}");
+        $this->prepareError($api,__FUNCTION__);
+        return $api;
+    }
+
+    public function GetFeederDetail($id_stat)
     {
         // Consume API
         $uri = 'iaserver-api';
         $api = new ApiConsume($uri);
         $api->get("npmpicker/v1/stat/{$id_stat}");
-        if($api->hasError()) { return $api->getError(); }
+        $this->prepareError($api,__FUNCTION__);
+        return $api;
+    }
 
-        return $api->response();
+    // Gestion de errores al consumir API
+    public function fails() {
+        if(count($this->errors)>0) {
+            return true;
+        }
+        return false;
+    }
+
+    public function errors() {
+        return $this->errors;
+    }
+
+    private function prepareError($api,$fx) {
+        if($api->hasError()) { $this->errors[$fx] = $api->getError(); }
     }
 
 }

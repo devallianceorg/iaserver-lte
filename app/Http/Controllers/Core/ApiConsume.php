@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Core\ApiAuthMode;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Support\Facades\Log;
@@ -29,6 +28,8 @@ class ApiConsume extends Controller
         } else {
             $this->setHost(env('IASERVER_LARAVEL_API'));
         }
+
+        $this->setJson();
     }
 
     public function setHost($host=null)
@@ -39,6 +40,10 @@ class ApiConsume extends Controller
     public function setAuth(ApiAuthMode $authMode)
     {
         $this->headers = $authMode->headers;
+    }
+
+    public function setJson() {
+        $this->headers["headers"]['Accept'] = "application/json";
     }
 
     public function forceDownload() {
@@ -53,15 +58,20 @@ class ApiConsume extends Controller
             return false;
         }
     }
-    public function getError() {
+    public function getError($key=null) {
+        if($key) {
+            return $this->error[$key];
+        }
         return $this->error;
     }
-    public function getResponse() {
+
+    public function response($key=null) {
+        if($key) {
+            return $this->response[$key];
+        }
         return $this->response;
     }
-    public function response() {
-        return $this->response;
-    }
+    
 
     private function generateUri($route) {
         $this->route = $route;
