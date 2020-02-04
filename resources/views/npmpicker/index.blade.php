@@ -61,7 +61,7 @@
                             @if(count($feeders)==0)
                                 No hay feeders inestables
                             @else
-                                @include('npmpicker.feeder_table')
+                                @include('npmpicker.feeder_chart')
                             @endif
                             <!-- /.table-responsive -->
                         </div>
@@ -73,6 +73,5 @@
             </div>
     @endif
     </section>
-
 
 @endsection
