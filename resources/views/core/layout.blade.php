@@ -55,7 +55,7 @@
   </style>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-<body class="hold-transition skin-green">
+<body class="hold-transition skin-green sidebar-collapse sidebar-mini">
 <div class="wrapper">
 
   @include('core.header')

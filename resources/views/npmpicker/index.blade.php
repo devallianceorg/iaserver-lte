@@ -21,6 +21,14 @@
     @else
         <div class="row">
                 <div class="col-sm-2">
+	 <!-- Date -->
+	<div class="input-group date"> 
+	    <input type="text" class="form-control" value="{{ $fecha }}"  id="datepicker" data-date-format="yyyy-mm-dd">
+	    <div class="input-group-addon">
+		<span class="fa fa-calendar"></span>
+	    </div>
+	</div>
+
                     <div class="box box-widget">
                         <div class="box-header">
                             <h3 class="box-title">Lineas activas</h3>
@@ -75,3 +83,22 @@
     </section>
 
 @endsection
+
+@section('endjs')
+
+<script>
+$(function(){
+//Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+
+$('#datepicker').on('changeDate', function() {
+        var val = $('#datepicker').datepicker('getFormattedDate')
+	window.location.href = '?fecha='+val;
+
+});
+
+});
+</script>
+@append
