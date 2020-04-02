@@ -49,7 +49,8 @@
                     '{{ $item['rate'] }}',
                     '{{ $item['total_error'] }}',
                     '{{ $item['estado'] }}',
-                    '{{ $item['rate_level'] }}');
+                    '0');
+                    
 
             @endforeach
 

@@ -39,6 +39,16 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('smtdatabase.index') }}">
+                    <i class="fa fa-database"></i> <span>SMTDataBase</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('controldestencil.index') }}">
+                    <i class="fa fa-object-ungroup"></i> <span>Control de Stencil</span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

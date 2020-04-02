@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Npmpicker\Api\v1;
 
-use App\Http\Controllers\Core\ApiConsume;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Core\ApiConsume;
 
 class Npmpicker extends Controller
 {
