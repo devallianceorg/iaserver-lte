@@ -41,7 +41,7 @@
             </li>
             <li>
                 <a href="{{ route('smtdatabase.index') }}">
-                    <i class="fa fa-database"></i> <span>SMTDataBase</span>
+                    <i class="fa fa-database"></i> <span>SMTDatabase</span>
                 </a>
             </li>
             <li>
