@@ -1,3 +1,4 @@
+@inject('user', 'App\Http\Controllers\Core\ApiLogin')
 <!-- Main Header -->
 <header class="main-header">
     <!-- Logo -->
@@ -16,6 +17,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
+        @include('core.header.toolbar')
     </nav>
 </header>
 

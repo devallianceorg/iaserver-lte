@@ -18,7 +18,8 @@ class ApiLogin extends Controller
 
         if(isset($response['error']))
         {
-            return redirect(route('login'))->withErrors(['auth.api'=>$response['error']]);
+            $error = $response['error'];
+            return redirect(route('login'))->with(['login.error'=>$error]);
         }
 
         if(isset($response['token'])) {
@@ -41,7 +42,7 @@ class ApiLogin extends Controller
     }
 
     public function getUserData($token) {
-        $authRoute = env('IASERVER_AUTH_API').'/me';
+        $authRoute = env('IASERVER_AUTH').'/me';
         $params = [
             'token' => $token
         ];
@@ -52,18 +53,22 @@ class ApiLogin extends Controller
 
             // Obtiene el contenido de la respuesta, la transforma a json
             $content = $consumeApi->getBody()->getContents();
-            $req = json_decode($content,true);
-        } catch (BadResponseException $ex) {
-            $content = $ex->getResponse();
-            $error = json_decode($content->getBody(), true);
-            return $error;
-        }
+            return json_decode($content,true);
+        } catch (\Exception $ex) {
 
-        return $req;
+            if($ex instanceof BadResponseException) {
+                $content = $ex->getResponse();
+                $error = json_decode($content->getBody(), true);
+                return compact('error');
+            }
+            // Si es un error no controlado...
+            $error = $ex->getMessage();
+            return compact('error');
+        }
     }
 
     private function doLogin() {
-        $authRoute = env('IASERVER_AUTH_API').'/login';
+        $authRoute = env('IASERVER_AUTH').'/login';
         $params = request()->all();
 
         try {
@@ -72,14 +77,18 @@ class ApiLogin extends Controller
 
             // Obtiene el contenido de la respuesta, la transforma a json
             $content = $consumeApi->getBody()->getContents();
-            $req = json_decode($content,true);
-        } catch (BadResponseException $ex) {
-            $content = $ex->getResponse();
-            $error = json_decode($content->getBody(), true);
-            return $error;
-        }
+            return json_decode($content,true);
+        } catch (\Exception $ex) {
 
-        return $req;
+            if($ex instanceof BadResponseException) {
+                $content = $ex->getResponse();
+                $error = json_decode($content->getBody(), true);
+                return compact('error');
+            }
+            // Si es un error no controlado...
+            $error = $ex->getMessage();
+            return compact('error');
+        }
     }
 
     // Static utils
@@ -91,10 +100,18 @@ class ApiLogin extends Controller
 
         return $user;
     }
+    public static function name() {
+        return self::user('name');
+    }
+    public static function roles() {
+        return collect(self::user('acl')['roles']);
+    }
+    public static function permisos() {
+        return collect(self::user('acl')['permisos']);
+    }
     public static function token() {
         return session('token');
     }
-
     public static function apikey() {
         return env('X_IASERVER_APIKEY');
     }

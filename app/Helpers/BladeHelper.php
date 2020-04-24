@@ -3,39 +3,36 @@
 namespace App\Helpers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Core\ApiLogin;
 use Illuminate\Support\Facades\Storage;
 
 class BladeHelper extends Controller
 {
     public static function bladeRol($rol) {
-    /*
         $user = ApiLogin::user();
         $roles = $user['acl']['roles'];
-        $access = collect($roles)->contains($rol);
+
+        // Los roles pueden listarse: rol1, rol2, rol3
+        $rol = explode(',',str_replace(' ','',$rol));
+
+        $access = collect($roles)->intersect($rol)->isNotEmpty();
+
         return $access;
-    */
-        return false;
     }
 
     public static function bladePermiso($permiso) {
-    /*
         $user = ApiLogin::user();
         $permisos = $user['acl']['permisos'];
         $access = collect($permisos)->contains($permiso);
         return $access;
-     */
-        return false;
     }
 
     public static function bladeUser() {
-    /*
         if(ApiLogin::user() === null) {
             return false;
         } else {
             return true;
         }
-    */
-        return false;
     }
 
     public static function bladeGitBuild() {
