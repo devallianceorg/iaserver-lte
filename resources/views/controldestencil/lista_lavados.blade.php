@@ -8,6 +8,9 @@
         <table class="table table-striped">
             <tbody><tr>
                 <th>Operador</th>
+                @if(!isset($hidecodigo))
+                    <th>Codigo</th>
+                @endif
                 <th>Fecha</th>
                 <th>Hora</th>
                 @rol('superadmin')
@@ -17,11 +20,17 @@
             @forelse($lavados['data'] as $item)
                 <tr>
                     <td>{{ $item['operador']['name'] }}</td>
+                    @if(!isset($hidecodigo))
+                        <td><a href="{{ route('controldestencil.detalle',$item['codigo']) }}">{{ $item['codigo'] }}</a></td>
+                    @endif
                     <td>{{ $item['fecha'] }}</td>
                     <td>{{ $item['hora'] }}</td>
                     @rol('superadmin')
                     <td>
-                        <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                        <form method="post" action="{{ route('controldestencil.lavados.delete',$item['id']) }}">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                        </form>
                     </td>
                     @endrol
                 </tr>

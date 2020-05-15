@@ -12,7 +12,7 @@
         @include('controldestencil.iconbar')
         <div class="row">
             <div class="col-md-8">
-                @include('controldestencil.lista_lavados')
+                @include('controldestencil.lista_lavados',['hidecodigo'=>true])
             </div>
 
             <div class="col-md-4">

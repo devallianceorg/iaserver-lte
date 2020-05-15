@@ -68,8 +68,8 @@ class Home extends Controller
         ];
 
         $abmObservaciones = new AbmObservaciones();
-        $addObservacion = $abmObservaciones->Add($params);
-        $observaciones = $addObservacion->response();
+        $createObservacion = $abmObservaciones->Create($params);
+        $observaciones = $createObservacion->response();
 
         $render = compact('observaciones');
 
@@ -98,4 +98,28 @@ class Home extends Controller
         return view('controldestencil.lavados',$render);
     }
 
+    public function lavadosCreate()
+    {
+        $id_operador = ApiLogin::user('id');
+
+        $params = [
+            'id_operador' => $id_operador,
+            'codigo' => request('codigo')
+        ];
+
+        $abmLavados = new AbmLavado();
+        $createLavado = $abmLavados->Create($params);
+        $render = $createLavado->response();
+
+        return redirect()->back();
+    }
+
+    public function lavadosDelete($id)
+    {
+        $api = new AbmLavado();
+        $apiDelete = $api->Delete($id);
+        $delete = $apiDelete->response();
+
+        return redirect()->back();
+    }
 }

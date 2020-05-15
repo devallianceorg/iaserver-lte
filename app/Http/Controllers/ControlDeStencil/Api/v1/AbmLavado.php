@@ -29,4 +29,25 @@ class AbmLavado extends Controller
         $this->checkErrors($api,__FUNCTION__);
         return $api;
     }
+
+    public function Create($params)
+    {
+        // Consume API
+        $uri = 'iaserver-api';
+        $api = new ApiConsume($uri);
+        $api->post("controldestencil/v1/abm/lavado/create",$params);
+        $this->checkErrors($api,__FUNCTION__);
+        return $api;
+    }
+
+    public function Delete($id)
+    {
+        // Consume API
+        $uri = 'iaserver-api';
+        $api = new ApiConsume($uri);
+        $api->post("controldestencil/v1/abm/lavado/delete/{$id}");
+        $this->checkErrors($api,__FUNCTION__);
+        return $api;
+    }
+
 }

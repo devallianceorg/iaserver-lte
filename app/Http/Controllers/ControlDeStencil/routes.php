@@ -6,6 +6,9 @@ Route::post('/observaciones/create', 'Home@observacionesCreate')->name('controld
 Route::post('/observaciones/delete/{id}', 'Home@observacionesDelete')->name('controldestencil.observaciones.delete');
 
 Route::get('/detalle/{codigo}', 'Home@detalle')->name('controldestencil.detalle');
+
 Route::get('/lavados', 'Home@lavados')->name('controldestencil.lavados');
+Route::post('/lavados/create', 'Home@lavadosCreate')->name('controldestencil.lavados.create');
+Route::post('/lavados/delete/{id}', 'Home@lavadosDelete')->name('controldestencil.lavados.delete');
 
 

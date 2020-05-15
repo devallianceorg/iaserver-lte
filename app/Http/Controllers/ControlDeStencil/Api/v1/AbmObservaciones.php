@@ -31,7 +31,7 @@ class AbmObservaciones extends Controller
         return $api;
     }
 
-    public function Add($params)
+    public function Create($params)
     {
         // Consume API
         $uri = 'iaserver-api';
