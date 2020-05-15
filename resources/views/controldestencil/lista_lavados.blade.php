@@ -21,13 +21,13 @@
                 <tr>
                     <td>{{ $item['operador']['name'] }}</td>
                     @if(!isset($hidecodigo))
-                        <td><a href="{{ route('controldestencil.detalle',$item['codigo']) }}">{{ $item['codigo'] }}</a></td>
+                        <td><a href="{{ url('/controldestencil/detalle',$item['codigo']) }}">{{ $item['codigo'] }}</a></td>
                     @endif
                     <td>{{ $item['fecha'] }}</td>
                     <td>{{ $item['hora'] }}</td>
                     @rol('superadmin')
                     <td>
-                        <form method="post" action="{{ route('controldestencil.lavados.delete',$item['id']) }}">
+                        <form method="post" action="{{ url('/controldestencil/lavados/delete',$item['id']) }}">
                             @csrf
                             <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
                         </form>

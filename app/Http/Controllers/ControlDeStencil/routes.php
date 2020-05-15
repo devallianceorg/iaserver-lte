@@ -1,14 +1,15 @@
 <?php
-Route::match(['get','post'],'/', 'Home@index')->name('controldestencil.index');
+Route::match(['get','post'],'/', 'Home@index');
+Route::get('/detalle/{codigo}', 'View\StencilDetalle@index');
 
-Route::get('/observaciones', 'Home@observaciones')->name('controldestencil.observaciones');
-Route::post('/observaciones/create', 'Home@observacionesCreate')->name('controldestencil.observaciones.create');
-Route::post('/observaciones/delete/{id}', 'Home@observacionesDelete')->name('controldestencil.observaciones.delete');
+Route::prefix('observaciones')->group(function () {
+    Route::get('/', 'View\Observaciones@index');
+    Route::post('/create', 'View\Observaciones@create');
+    Route::post('/delete/{id}', 'View\Observaciones@delete');
+});
 
-Route::get('/detalle/{codigo}', 'Home@detalle')->name('controldestencil.detalle');
-
-Route::get('/lavados', 'Home@lavados')->name('controldestencil.lavados');
-Route::post('/lavados/create', 'Home@lavadosCreate')->name('controldestencil.lavados.create');
-Route::post('/lavados/delete/{id}', 'Home@lavadosDelete')->name('controldestencil.lavados.delete');
-
-
+Route::prefix('lavados')->group(function () {
+    Route::get('/', 'View\Lavados@index');
+    Route::post('/create', 'View\Lavados@create');
+    Route::post('/delete/{id}', 'View\Lavados@delete');
+});

@@ -52,7 +52,7 @@
                             <div class="box-comment">
                                 @rol('superadmin')
                                 <div class="pull-right">
-                                    <form method="post" action="{{ route('controldestencil.observaciones.delete',$item['id']) }}">
+                                    <form method="post" action="{{ url('/controldestencil/observaciones/delete',$item['id']) }}">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
                                     </form>
@@ -75,7 +75,7 @@
                     </div>
                     <!-- /.box-footer -->
                     <div class="box-footer">
-                        <form action="{{ route('controldestencil.observaciones.create') }}" method="post">
+                        <form action="{{ url('/controldestencil/observaciones/create') }}" method="post">
                             @csrf
                             <input type="hidden" name="codigo" value="{{ $stencil['codigo'] }}">
                             <!-- .img-push is used to add margin to elements next to floating images -->
