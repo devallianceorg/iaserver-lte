@@ -41,6 +41,14 @@
                             </div>
                         </form>
                     </div>
+                    <div class="col-md-6">
+                        @rol('stencil_admin, stencil_operador, superadmin')
+                        <a class="btn btn-default pull-right">
+                            <i class="fa fa-save"></i> Crear nuevo stencil
+                        </a>
+                        @endrol
+
+                    </div>
                 </div>
 
             </div>
@@ -70,7 +78,7 @@
                     </tr>
                     @forelse($stenciles['data'] as $item)
                     <tr>
-                        <td><a href="{{ route('controldestencil.detalle',$item['codigo']) }}">{{ $item['codigo'] }}</a></td>
+                        <td><a href="{{ url('/controldestencil/detalle',$item['codigo']) }}">{{ $item['codigo'] }}</a></td>
                         <td>{{ $item['ubicacion']['codigo_ubicacion'] }}</td>
                         <td>{{ $item['modelo'] }}</td>
                         <td>{{ $item['placa'] }}</td>

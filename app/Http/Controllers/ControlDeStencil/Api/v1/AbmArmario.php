@@ -3,20 +3,14 @@
 namespace App\Http\Controllers\ControlDeStencil\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Core\ApiConsume;
-use App\Traits\ApiConsumeHandleTrait;
+use App\Traits\ApiDefaultAbmRouteTrait;
 
 class AbmArmario extends Controller
 {
-    use ApiConsumeHandleTrait;
+    use ApiDefaultAbmRouteTrait;
 
-    public function GetList()
+    public function __construct()
     {
-        // Consume API
-        $uri = 'iaserver-api';
-        $api = new ApiConsume($uri);
-        $api->get("controldestencil/v1/abm/armario");
-        $this->checkErrors($api,__FUNCTION__);
-        return $api;
+        $this->setAbmRoute('controldestencil/v1/abm/armario');
     }
 }

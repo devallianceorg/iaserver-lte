@@ -5,27 +5,23 @@ namespace App\Http\Controllers\ControlDeStencil\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\ApiConsume;
 use App\Traits\ApiConsumeHandleTrait;
+use App\Traits\ApiDefaultAbmRouteTrait;
 
 class AbmStencil extends Controller
 {
-    use ApiConsumeHandleTrait;
+    use ApiDefaultAbmRouteTrait;
 
-    public function GetList($params=[])
+    public function __construct()
     {
-        // Consume API
-        $uri = 'iaserver-api';
-        $api = new ApiConsume($uri);
-        $api->get("controldestencil/v1/abm/stencil",$params);
-        $this->checkErrors($api,__FUNCTION__);
-        return $api;
+        $this->setAbmRoute('controldestencil/v1/abm/stencil');
     }
 
-    public function GetByCodigo($codigo)
+    public function getByCodigo($codigo)
     {
         // Consume API
         $uri = 'iaserver-api';
         $api = new ApiConsume($uri);
-        $api->get("controldestencil/v1/abm/stencil/codigo/{$codigo}");
+        $api->get("{$this->route}/codigo/{$codigo}");
         $this->checkErrors($api,__FUNCTION__);
         return $api;
     }

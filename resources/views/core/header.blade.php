@@ -29,7 +29,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">NAVEGACION</li>
             <li>
-                <a href="{{ route('npmpicker.index') }}">
+                <a href="{{ url('/npmpicker') }}">
                     <i class="fa fa-signal"></i> <span>Control de pickups</span>
                 </a>
             </li>
@@ -42,12 +42,12 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('smtdatabase.index') }}">
+                <a href="{{ url('/smtdatabase') }}">
                     <i class="fa fa-database"></i> <span>SMTDatabase</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('controldestencil.index') }}">
+                <a href="{{ url('/controldestencil') }}">
                     <i class="fa fa-object-ungroup"></i> <span>Control de Stencil</span>
                 </a>
             </li>

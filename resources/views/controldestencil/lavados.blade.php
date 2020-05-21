@@ -19,7 +19,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <form method="post" action="{{ route('controldestencil.lavados.create') }}">
+                        <form method="post" action="{{ url('/controldestencil/lavados/create') }}">
                             @csrf
                             <div class="input-group">
                                 <input name="codigo" class="form-control" placeholder="Ingresar codigo de stencil">
