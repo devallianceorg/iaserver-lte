@@ -13,14 +13,17 @@
         "axios": "^0.19",
         "cross-env": "^5.1",
         "laravel-mix": "^4.0.7",
-        "lodash": "^4.17.13",
+        "lodash": "^4.17.15",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
-        "vue-template-compiler": "^2.6.11",
-        "vue": "^2.6.11"
-
+        "vue": "^2.6.11",
+        "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "vue-js-modal": "^2.0.0-rc.3",
+        "vue-lodash": "^2.1.2",
+        "vue-snotify": "^3.2.1",
+        "vue-swal": "^1.0.0"
     }
 }

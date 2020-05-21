@@ -15,6 +15,27 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('home-lte', require('./component/HomeLte.vue').default)
+Vue.component('smtdatabase-editar-modelo',require('./component/smtdatabase/FormEditarModelo.vue').default)
+Vue.component('smtdatabase-declarar-op',require('./component/smtdatabase/FormDeclararOp.vue').default)
+
+// CONTROL DE CONSUMIBLES
+Vue.component('controldeconsumibles-tabla-historial',require('./component/controldeconsumibles/TablaHistorial.vue').default)
+Vue.component('controldeconsumibles-registrar',require('./component/controldeconsumibles/Registrar.vue').default)
+
+// /.CONTROL DE CONSUMIBLES
+
+import VModal from 'vue-js-modal'
+Vue.use(VModal)
+
+import VueSwal from 'vue-swal'
+Vue.use(VueSwal)
+
+import VueLodash from 'vue-lodash'
+import lodash from 'lodash'
+// name is optional
+Vue.use(VueLodash, { name: 'lodash' , lodash: lodash })
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

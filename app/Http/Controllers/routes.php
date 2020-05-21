@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'HomeLte@index')->name('home');
 Route::get('/login', 'Core\ApiLogin@index')->name('login');
 Route::post('/login', 'Core\ApiLogin@start')->name('login.start');
