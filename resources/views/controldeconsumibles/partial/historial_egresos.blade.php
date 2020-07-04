@@ -1,0 +1,1 @@
+<controldeconsumibles-tabla-historial />

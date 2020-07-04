@@ -88,6 +88,7 @@
       increaseArea: '20%' /* optional */
     });
   });
+  $('#reservation').daterangepicker()
 </script>
 </body>
 </html>

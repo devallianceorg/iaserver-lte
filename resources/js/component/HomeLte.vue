@@ -17,3 +17,10 @@
         }
     }
 </script>
+<style>
+.indicaciones {
+  color:dimgrey;
+  font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
+}
+</style>

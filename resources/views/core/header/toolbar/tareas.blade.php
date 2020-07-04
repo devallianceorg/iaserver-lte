@@ -14,7 +14,7 @@
                 <a href="#">
                     <!-- Task title and progress text -->
                     <h3>
-                        Promocionar alumnos
+                        Mantenimiento Nave 3
                         <small class="pull-right">20%</small>
                     </h3>
                     <!-- The progress bar -->

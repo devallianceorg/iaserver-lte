@@ -13,7 +13,7 @@
           <p class="login-box-msg" style="padding-bottom:0px;">Declarar Producto</p>
         </div>
         <div class="box-body">
-          <div v-if="!lodash.isNaN(wip) && wip.active">
+          <div v-if="!_.isNaN(wip) && wip.active">
             <!-- REVISAR -->
             <small>Cantidad de Lote</small> {{ wip.wip_ot.start_quantity }}
             <small>Declarado</small> {{ wip.wip_ot.quantity_completed }}
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="box-footer">
-          <div v-if="!lodash.isNaN(wip) && wip.active">
+          <div v-if="!_.isNaN(wip) && wip.active">
             <input type="hidden" name="op" class="form-control" v-model="wip.wip_ot.nro_op"/>
             <input type="hidden" name="codigo_producto" class="form-control" v-model="wip.wip_ot.codigo_producto" />
             <button type="submit" class="btn btn-success btn-block" @click="declare()" :disabled="declareDisabled">Declarar</button>

@@ -1,6 +1,7 @@
 @inject('user', 'App\Http\Controllers\Core\ApiLogin')
 
 @extends('core.layout')
+@section('title','IAServer')
 @section('contenido')
     <!-- Breadcrumb -->
     <section class="content-header">

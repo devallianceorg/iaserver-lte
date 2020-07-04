@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Route;
+
 Route::match(['get','post'],'/', 'Home@index');
 Route::get('/detalle/{codigo}', 'View\StencilDetalle@index');
 

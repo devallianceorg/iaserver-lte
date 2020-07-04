@@ -24,16 +24,29 @@ Vue.component('controldeconsumibles-registrar',require('./component/controldecon
 
 // /.CONTROL DE CONSUMIBLES
 
+// CONTROL DE PLACAS
+Vue.component('controldeplacas-enviar-op',require('./component/controldeplacas/FormEnviarOp.vue').default)
+Vue.component('controldeplacas-paletizar',require('./component/controldeplacas/FormPaletizar.vue').default)
+Vue.component('controldeplacas-filtros',require('./component/controldeplacas/Filtros/Main.vue').default)
+Vue.component('controldeplacas-recepcionar',require('./component/controldeplacas/FormRecepcionar.vue').default)
+// /.CONTROL DE PLACAS
+
+// COGISCAN
+Vue.component('cogiscan-utils-dividir-material', require('./component/cogiscan/cogiscanutilities/DividirMaterial.vue').default)
+Vue.component('cogiscan-utils-cargar-materiales', require('./component/cogiscan/cogiscanutilities/CargarMateriales.vue').default)
+Vue.component('cogiscan-utils-generar-contenedor', require('./component/cogiscan/cogiscanutilities/GenerarContenedor.vue').default)
+// / COGISCAN
+
 import VModal from 'vue-js-modal'
 Vue.use(VModal)
 
 import VueSwal from 'vue-swal'
 Vue.use(VueSwal)
 
-import VueLodash from 'vue-lodash'
-import lodash from 'lodash'
+// import VueLodash from 'vue-lodash'
+// import lodash from 'lodash'
 // name is optional
-Vue.use(VueLodash, { name: 'lodash' , lodash: lodash })
+// Vue.use(VueLodash, { name: 'lodash' , lodash: _ })
 
 
 

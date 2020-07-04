@@ -47,8 +47,51 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('ordendetrabajo.index') }}">
+                    <i class="fa fa-sort-amount-asc"></i> <span>Orden de Trabajo</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ url('/controldestencil') }}">
                     <i class="fa fa-object-ungroup"></i> <span>Control de Stencil</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-cc"></i> <span>Control de Consumibles</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('controldeconsumibles.index') }}">
+                            <i class="fa fa-barcode"></i> <span>Registrar</span>
+                        </a>
+                    </li>
+                    @rol('admin, superadmin, consumibles_admin')
+                    <li>
+                        <a href="{{ route('controldeconsumibles.cliente.index') }}">
+                            <i class="fa fa-newspaper-o"></i> <span>Administrar</span>
+                        </a>
+                    </li>
+                    @endrol
+                </ul>
+            </li>
+            @rol('admin, superadmin, cogiscan_admin, cogiscan_materialista')
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-contao"></i> <span>Cogiscan</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ url('/cogiscan/cogiscan_utilities') }}">
+                            <i class="fa fa-barcode"></i> <span>Cogiscan Utilities</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endrol
+            <li>
+                <a href="{{ url('/controldeplacas') }}">
+                    <i class="fa fa-exchange"></i> <span>Control de Placas</span>
                 </a>
             </li>
         </ul>

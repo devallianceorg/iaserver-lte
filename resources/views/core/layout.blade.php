@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>IAServer LTE</title>
+  <title>@yield('title')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -34,6 +34,9 @@
 
   <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('lte/bower_components/select2/dist/css/select2.min.css') }}">
+
+  {{-- Custom Styles --}}
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -122,6 +125,23 @@
   function remoteLink(uri) {
     document.getElementById("vuelte").innerHTML='<object id="objectFrame" type="text/html" data="'+uri+'"  width="100%" height="1000" style="min-height: 800px;"></object>';
   }
+
+  // Datatables
+  $(function () {
+    $('#controldeplacastable').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false,
+      "scrollX": true,
+      "columnDefs": [
+        { "width": "200px", "targets": 2 }
+      ]
+    })
+  })
+
 </script>
 
 @yield('endjs')

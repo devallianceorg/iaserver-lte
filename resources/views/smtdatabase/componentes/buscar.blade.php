@@ -13,7 +13,8 @@
         <table class="table table-bordered table-striped">
         <thead>
         <tr>
-            <th></th>
+            {{-- REVISAR --}}
+            {{-- <th></th> --}}
             <th>Modelo</th>
             <th>Panel</th>
             <th>Componente</th>
@@ -25,7 +26,8 @@
                 @if(isset($materiales))
                     @foreach($materiales as $material)
                         <tr>
-                            <td class="text-center"> <a href="#" class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Info</a> </td>
+                            {{-- REVISAR --}}
+                            {{-- <td class="text-center"> <a href="#" class="btn btn-info btn-xs"><i class="fa fa-plus"></i> Info</a> </td> --}}
                             <td> {{ $material["modelo"] }}</td>
                             <td> {{ $material["logop"] }}</td>
                             <td> {{ $material["componente"] }}</td>
