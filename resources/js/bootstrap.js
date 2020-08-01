@@ -21,6 +21,8 @@ Vue.component('smtdatabase-declarar-op',require('./component/smtdatabase/FormDec
 // CONTROL DE CONSUMIBLES
 Vue.component('controldeconsumibles-tabla-historial',require('./component/controldeconsumibles/TablaHistorial.vue').default)
 Vue.component('controldeconsumibles-registrar',require('./component/controldeconsumibles/Registrar.vue').default)
+Vue.component('controldeconsumibles-administrar-impresion',require('./component/controldeconsumibles/administracion/Impresion.vue').default)
+
 
 // /.CONTROL DE CONSUMIBLES
 
@@ -37,6 +39,14 @@ Vue.component('cogiscan-utils-cargar-materiales', require('./component/cogiscan/
 Vue.component('cogiscan-utils-generar-contenedor', require('./component/cogiscan/cogiscanutilities/GenerarContenedor.vue').default)
 // / COGISCAN
 
+// AOICOLLECTOR
+Vue.component('aoicollector-prod-registrar-header', require('./component/aoicollector/prod/Header.vue').default)
+// Vue.component('aoicollector-prod-registrar-infoop', require('./component/aoicollector/prod/InfoOp.vue').default)
+Vue.component('aoicollector-prod-registrar-footer', require('./component/aoicollector/prod/Footer.vue').default)
+Vue.component('aoicollector-prod-registrar-produccion', require('./component/aoicollector/prod/Produccion.vue').default)
+Vue.component('aoicollector-prod-stocker', require('./component/aoicollector/widget/StockerSidebar.vue').default)
+// / AOICOLLECTOR
+
 import VModal from 'vue-js-modal'
 Vue.use(VModal)
 
@@ -47,15 +57,9 @@ Vue.use(VueSwal)
 // import lodash from 'lodash'
 // name is optional
 // Vue.use(VueLodash, { name: 'lodash' , lodash: _ })
-
-
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import store from './store/index'
 
 const app = new Vue({
-  el: '#vuelte'
+  el: '#vuelte',
+  store
 });

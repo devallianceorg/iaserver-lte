@@ -28,6 +28,41 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">NAVEGACION</li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-qrcode"></i> <span>AOI</span>
+                </a>
+                <ul class="treeview-menu">
+                    @rol('admin, superadmin, smtdatabase_admin')
+                    <li>
+                        <a href="">
+                            <i class="fa fa-road"></i> <span>Rutas AOI</span>
+                        </a>
+                    </li>
+                    @endrol
+                    <li>
+                        <a href="{{ route('aoi.registrar') }}">
+                            {{-- Consultar por nombre de ruta --}}
+                            <i class="fa fa-newspaper-o"></i> <span>Registrar Placas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-dashboard"></i> <span>Estadísticas AOI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-search"></i> <span>Inspecciones AOI</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-list-alt"></i> <span>Pizarra de Producción</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li>
                 <a href="{{ url('/npmpicker') }}">
                     <i class="fa fa-signal"></i> <span>Control de pickups</span>
