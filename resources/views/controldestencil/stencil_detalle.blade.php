@@ -12,35 +12,7 @@
         @include('controldestencil.iconbar')
         <div class="row">
             <div class="col-md-8">
-                @include('controldestencil.lista_lavados',['hidecodigo'=>true])
-            </div>
-
-            <div class="col-md-4">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Stencil</h3>
-                    </div>
-
-                    <!-- /.box-header -->
-                    <div class="box-body padding">
-                        <p>
-                            <b>Codigo</b> {{ $stencil['codigo'] }}
-                        </p>
-                        <p>
-                            <b>Codigo de ubicacion</b> {{ $stencil['ubicacion']['codigo_ubicacion'] }}
-                        </p>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-
-                <p>
-                    @rol('superadmin')
-                    <button class="btn btn-block btn-danger">
-                        Eliminar stencil
-                    </button>
-                    @endrol
-                </p>
-
+                @include('controldestencil.lista_lavados',['lavados'=>$lavados,'hidecodigo'=>true])
 
                 <div class="box">
                     <div class="box-header">
@@ -48,30 +20,34 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-footer box-comments">
-                        @forelse($observaciones['data'] as $item)
-                            <div class="box-comment">
-                                @rol('superadmin')
-                                <div class="pull-right">
-                                    <form method="post" action="{{ url('/controldestencil/observaciones/delete',$item['id']) }}">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                                    </form>
+                        @if(!$observaciones)
+                            <code>Error al obtener observaciones</code>
+                        @else
+                            @forelse($observaciones['data'] as $item)
+                                <div class="box-comment">
+                                    @rol('superadmin')
+                                    <div class="pull-right">
+                                        <form method="post" action="{{ url('/controldestencil/observaciones/delete',$item['id']) }}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                    @endrol
+                                    <div class="comment-text">
+                                          <span class="username">
+                                            {{ $item['operador']['name'] }}
+                                              <span class="text-muted">{{ $item['fecha'] }} - {{ $item['hora'] }}</span>
+                                          </span>
+                                        <!-- /.username -->
+                                        {{ $item['texto'] }}
+                                    </div>
+                                    <!-- /.comment-text -->
                                 </div>
-                                @endrol
-                                <div class="comment-text">
-                                      <span class="username">
-                                        {{ $item['operador']['name'] }}
-                                        <span class="text-muted">{{ $item['fecha'] }} - {{ $item['hora'] }}</span>
-                                      </span>
-                                    <!-- /.username -->
-                                    {{ $item['texto'] }}
-                                </div>
-                                <!-- /.comment-text -->
-                            </div>
-                            <!-- /.box-comment -->
-                        @empty
-                            Sin observaciones
-                        @endforelse
+                                <!-- /.box-comment -->
+                            @empty
+                                Sin observaciones
+                            @endforelse
+                        @endif
                     </div>
                     <!-- /.box-footer -->
                     <div class="box-footer">
@@ -86,6 +62,40 @@
                     </div>
                     <!-- /.box-footer -->
                 </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Stencil</h3>
+                    </div>
+
+                    <!-- /.box-header -->
+                    <div class="box-body padding">
+                        @if($stencil)
+                        <p>
+                            <b>Codigo</b> {{ $stencil['codigo'] }}
+                        </p>
+                        <p>
+                            <b>Codigo de ubicacion</b> {{ $stencil['ubicacion']['codigo_ubicacion'] }}
+                        </p>
+                        @else
+                            <code>Error al obtener datos de stencil</code>
+                        @endif
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+
+                <controldestencil-tension-abm codigo="{{ $stencil['codigo'] }}"></controldestencil-tension-abm>
+
+                <p>
+                    @rol('superadmin')
+                    <button class="btn btn-block btn-danger">
+                        Eliminar stencil
+                    </button>
+                    @endrol
+                </p>
+
             </div>
         </div>
     </section>

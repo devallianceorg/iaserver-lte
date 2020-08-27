@@ -40,6 +40,16 @@ trait ApiDefaultAbmRouteTrait
         return $api;
     }
 
+    public function show($id,$params)
+    {
+        // Consume API
+        $uri = 'iaserver-api';
+        $api = new ApiConsume($uri);
+        $api->post("{$this->route}/{$id}",$params);
+        $this->checkErrors($api,__FUNCTION__);
+        return $api;
+    }
+
     public function create($params)
     {
         // Consume API

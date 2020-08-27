@@ -11,6 +11,6 @@ class AbmArmario extends Controller
 
     public function __construct()
     {
-        $this->setAbmRoute('controldestencil/v1/abm/armario');
+        $this->setAbmRoute('controldestencil/v1/armario');
     }
 }

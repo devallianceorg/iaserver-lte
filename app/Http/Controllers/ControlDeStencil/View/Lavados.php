@@ -8,6 +8,11 @@ use App\Http\Controllers\Core\ApiLogin;
 
 class Lavados extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.api')->except('index');
+    }
+
     public function index()
     {
         $api = new AbmLavado();

@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\ApiConsume;
 use App\Traits\ApiDefaultAbmRouteTrait;
 
-class AbmObservaciones extends Controller
+class AbmTension extends Controller
 {
     use ApiDefaultAbmRouteTrait;
 
     public function __construct()
     {
-        $this->setAbmRoute('controldestencil/v1/observaciones');
+        $this->setAbmRoute('controldestencil/v1/tension');
     }
 
     public function getListByCodigo($codigo)

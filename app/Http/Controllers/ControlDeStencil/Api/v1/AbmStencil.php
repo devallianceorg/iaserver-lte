@@ -4,7 +4,6 @@ namespace App\Http\Controllers\ControlDeStencil\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\ApiConsume;
-use App\Traits\ApiConsumeHandleTrait;
 use App\Traits\ApiDefaultAbmRouteTrait;
 
 class AbmStencil extends Controller
@@ -13,7 +12,7 @@ class AbmStencil extends Controller
 
     public function __construct()
     {
-        $this->setAbmRoute('controldestencil/v1/abm/stencil');
+        $this->setAbmRoute('controldestencil/v1/stencil');
     }
 
     public function getByCodigo($codigo)

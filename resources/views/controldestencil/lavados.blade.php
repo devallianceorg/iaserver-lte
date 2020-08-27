@@ -36,7 +36,7 @@
             <!-- /.box-body -->
         </div>
 
-        @include('controldestencil.lista_lavados')
+        @include('controldestencil.lista_lavados',['lavados'=>$lavados])
     </section>
     <!-- /.content -->
 @endsection

@@ -52,3 +52,9 @@ public/lte/starter\.html
 public/lte/yarn\.lock
 
 public/lte/
+
+public/mix-manifest\.json
+
+public/js/app\.js
+
+docs/files/structure\.xml

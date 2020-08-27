@@ -12,7 +12,7 @@ class AbmLavado extends Controller
 
     public function __construct()
     {
-        $this->setAbmRoute('controldestencil/v1/abm/lavado');
+        $this->setAbmRoute('controldestencil/v1/lavado');
     }
 
     public function getListByCodigo($codigo)

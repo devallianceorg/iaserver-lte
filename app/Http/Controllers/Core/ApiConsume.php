@@ -58,11 +58,16 @@ class ApiConsume extends Controller
             return false;
         }
     }
+
     public function getError($key=null) {
         if($key) {
             return $this->error[$key];
         }
-        return $this->error;
+        $error = array_merge($this->error,['api_route'=>$this->getRoute()]);
+        return $error;
+    }
+    public function getRoute() {
+        return $this->consume_route;
     }
 
     public function response($key=null) {

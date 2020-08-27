@@ -17,7 +17,17 @@
                     <th style="width: 40px;"></th>
                 @endrol
             </tr>
-            @forelse($lavados['data'] as $item)
+            @if(!$lavados)
+                <tr>
+                    <td>
+                        <code>
+                            Error al obtener lavados
+                        </code>
+                    </td>
+                </tr>
+            @else
+
+                @forelse($lavados['data'] as $item)
                 <tr>
                     <td>{{ $item['operador']['name'] }}</td>
                     @if(!isset($hidecodigo))
@@ -38,7 +48,8 @@
                 <tr>
                     <td>No hay lavados registrados</td>
                 </tr>
-            @endforelse
+                @endforelse
+            @endif
             </tbody></table>
     </div>
     <!-- /.box-body -->

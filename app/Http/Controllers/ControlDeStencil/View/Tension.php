@@ -2,26 +2,15 @@
 
 namespace App\Http\Controllers\ControlDeStencil\View;
 
-use App\Http\Controllers\ControlDeStencil\Api\v1\AbmObservaciones;
+use App\Http\Controllers\ControlDeStencil\Api\v1\AbmTension;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\ApiLogin;
 
-class Observaciones extends Controller
+class Tension extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.api')->except('index');
-    }
-
-    public function index()
-    {
-        $abmObservaciones = new AbmObservaciones();
-        $getObservaciones = $abmObservaciones->getList();
-        $observaciones = $getObservaciones->response();
-
-        $render = compact('observaciones');
-
-        return view('controldestencil.observaciones',$render);
+        $this->middleware('auth.api');
     }
 
     public function create()
@@ -30,13 +19,12 @@ class Observaciones extends Controller
 
         $params = [
             'id_operador' => $id_operador,
-            'texto' => request('texto'),
-            'codigo' => request('codigo')
+            'tension' => request('tension'),
+            'codigo' => request('codigo'),
         ];
 
-        $api = new AbmObservaciones();
+        $api = new AbmTension();
         $apiCreate = $api->create($params);
-
         $create = $apiCreate->response();
 
         $render = compact('create');
@@ -46,7 +34,7 @@ class Observaciones extends Controller
 
     public function delete($id)
     {
-        $api  = new AbmObservaciones();
+        $api  = new AbmTension();
         $apiDelete = $api->delete($id);
         $delete = $apiDelete->response();
 
