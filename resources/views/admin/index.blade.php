@@ -9,6 +9,7 @@
     </section>
     <!-- Main content -->
     <section class="content">
+        @if(isset($users['data'])&&isset($roles['data'])&&isset($permisos['data']))
         <div>
             <a class="btn btn-app">
                 <span class="badge bg-aqua">{{ $users['total'] }}</span>
@@ -108,7 +109,11 @@
             </div>
             <!-- /.box-body -->
         </div>
-
+        @else
+            <code>
+                Error al obtener información
+            </code>
+        @endif
     </section>
     <!-- /.content -->
 @endsection

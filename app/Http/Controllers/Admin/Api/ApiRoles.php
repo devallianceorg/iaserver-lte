@@ -6,14 +6,28 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\ApiAuthMode;
 use App\Http\Controllers\Core\ApiConsume;
 
+/**
+ * Gestion de Roles mediante ApiConsume
+ * @package App\Http\Controllers\Admin\Api
+ */
 class ApiRoles extends Controller
 {
     public $authMode;
+
+    /**
+     * Tipo de autenticacion para consumo de API
+     * @param ApiAuthMode $authMode
+     */
     public function __construct(ApiAuthMode $authMode)
     {
         $this->authMode= $authMode;
     }
-    
+
+    /**
+     * Lista de roles
+     * @param array $params
+     * @return mixed
+     */
     public function getAll($params=[]) {
         $api = new ApiConsume();
         $api->setHost(env('IASERVER_AUTH'));
@@ -25,7 +39,12 @@ class ApiRoles extends Controller
 
         return $response;
     }
-    
+
+    /**
+     * Crear rol
+     * @param string $name Nombre del rol
+     * @return mixed
+     */
     public function add($name) {
         $api = new ApiConsume();
         $api->setHost(env('IASERVER_AUTH'));
@@ -40,6 +59,11 @@ class ApiRoles extends Controller
         return $response;
     }
 
+    /**
+     * Eliminar rol
+     * @param int $id
+     * @return mixed
+     */
     public function del($id) {
         $api = new ApiConsume();
         $api->setHost(env('IASERVER_AUTH'));

@@ -14,9 +14,10 @@
             <div class="box-header">
                 <h3 class="box-title">Observaciones recientes</h3>
             </div>
-
             <!-- /.box-header -->
+
             <div class="box-body no-padding">
+                @if(isset($observaciones['data']))
                 <table class="table table-striped">
                     <tbody><tr>
                         <th>Codigo</th>
@@ -47,6 +48,11 @@
                     @endforeach
 
                     </tbody></table>
+                @else
+                    <code>
+                        Error al obtener lista de observaciones
+                    </code>
+                @endif
             </div>
             <!-- /.box-body -->
         </div>

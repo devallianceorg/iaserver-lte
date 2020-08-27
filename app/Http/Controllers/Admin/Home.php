@@ -9,8 +9,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\ApiAuthMode;
 use App\Http\Controllers\Core\ApiLogin;
 
+/**
+ * Administracion de usuarios roles y permisos
+ * @ignore
+ */
 class Home extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.api');
+    }
+
     public function index()
     {
         // Default mode JWT

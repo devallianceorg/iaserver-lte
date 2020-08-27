@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+  <!-- Title of your project. It will be used to show a mini description -->
+  <title>`IAServer` Documentacion</title>
+
+  <!-- [1]
+  Directories and files from where will be extracted the documentation;
+  where your PHP sources are. -->
+  <files>
+    <!-- In this case, the soures to document are in the `demo/` dir-->
+    <directory>app/Http/Controllers</directory>
+    <directory>app/Traits</directory>
+
+    <!-- You can include as many <directory> you need. And also, specific files
+    by using <file> tag-->
+
+    <!-- <file>vendor/cakephp/utility/Text.php</file> -->
+  </files>
+
+
+  <transformer>
+    <!-- [2] Directory where the generate documentation files be. -->
+    <target>docs/files</target>
+  </transformer>
+
+  <transformations>
+    <!-- [3] Directory where the template.xml is. In this case, the template.xml file is in that directory -->
+    <template name="xml" />
+  </transformations>
+
+
+  <parser>
+    <!-- [4] Elements to include in your documentation by visibility:
+         public, protected and private. -->
+    <visibility>public,protected</visibility>
+
+    <!-- Directory where to put the cache. This can be set to any directory.
+         Remember ignore it by Git -->
+    <target>docs/cache</target>
+  </parser>
+</phpdoc>

@@ -1,7 +1,4 @@
 <?php
-use Illuminate\Support\Facades\Route;
-
-
 Route::post('/buscar', [
     'as' => 'smtdatabase.componentes.buscar',
     'uses' => 'ComponentesView@findComponente'
