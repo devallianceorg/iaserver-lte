@@ -36,7 +36,7 @@
             <!-- /.box-body -->
         </div>
 
-        @include('controldestencil.lista_lavados',['lavados'=>$lavados])
+        <controldestencil-lavados-abm-table></controldestencil-lavados-abm-table>
     </section>
     <!-- /.content -->
 @endsection

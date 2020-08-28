@@ -10,53 +10,8 @@
     <!-- Main content -->
     <section class="content">
         @include('controldestencil.iconbar')
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Observaciones recientes</h3>
-            </div>
-            <!-- /.box-header -->
 
-            <div class="box-body no-padding">
-                @if(isset($observaciones['data']))
-                <table class="table table-striped">
-                    <tbody><tr>
-                        <th>Codigo</th>
-                        <th>Operador</th>
-                        <th>Mensaje</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        @rol('superadmin')
-                        <td style="width: 40px;"></td>
-                        @endrol
-                    </tr>
-                    @foreach($observaciones['data'] as $item)
-                        <tr>
-                            <td><a href="{{ url('/controldestencil/detalle',$item['codigo']) }}">{{ $item['codigo'] }}</a></td>
-                            <td>{{ $item['operador']['name'] }}</td>
-                            <td>{{ $item['texto'] }}</td>
-                            <td>{{ $item['fecha'] }}</td>
-                            <td>{{ $item['hora'] }}</td>
-                            @rol('superadmin')
-                            <td>
-                                <form method="post" action="{{ url('/controldestencil/observaciones/delete',$item['id']) }}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </td>
-                            @endrol
-                        </tr>
-                    @endforeach
-
-                    </tbody></table>
-                @else
-                    <code>
-                        Error al obtener lista de observaciones
-                    </code>
-                @endif
-            </div>
-            <!-- /.box-body -->
-        </div>
-
+        <controldestencil-observaciones-abm-table></controldestencil-observaciones-abm-table>
     </section>
     <!-- /.content -->
 @endsection

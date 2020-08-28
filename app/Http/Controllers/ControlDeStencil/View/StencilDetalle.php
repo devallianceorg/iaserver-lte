@@ -13,19 +13,11 @@ class StencilDetalle extends Controller
     public function index($codigo)
     {
         $abmStencil = new AbmStencil();
-        $abmObservaciones = new AbmObservaciones();
-        $abmLavado = new AbmLavado();
-        $abmTension = new AbmTension();
 
         $getByCodigo = $abmStencil->getByCodigo($codigo);
-        $getObservacionesByCodigo = $abmObservaciones->getListByCodigo($codigo);
-        $getLavadosByCodigo = $abmLavado->getListByCodigo($codigo);
-
         $stencil = $getByCodigo->response();
-        $observaciones = $getObservacionesByCodigo->response();
-        $lavados = $getLavadosByCodigo->response();
 
-        $render = compact('stencil','observaciones','lavados');
+        $render = compact('stencil');
 
         return view('controldestencil.stencil_detalle',$render);
     }

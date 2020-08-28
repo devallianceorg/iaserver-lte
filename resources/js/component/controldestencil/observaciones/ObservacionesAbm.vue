@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Tension</h3>
+            <h3 class="box-title">Observaciones</h3>
         </div>
         <div v-if="networkError" class="callout callout-danger">
             <h4>Network error</h4>
@@ -9,28 +9,29 @@
         </div>
         <div v-else class="box-footer box-comments">
             <!-- List-->
-            <div v-if="tensionList.data.length">
-                <div class="box-comment" v-for="item in tensionList.data">
+            <div v-if="apiList.data.length">
+                <div class="box-comment" v-for="item in apiList.data">
                     <!-- Delete -->
                     <div class="pull-right">
                         <button class="btn btn-danger btn-xs" @click="modalConfirm(item.id)"><i class="fa fa-trash"></i></button>
                     </div>
                     <div class="comment-text">
-                  <span class="username">
-                    {{ item.operador.name }}
-                    <span class="text-muted">{{ item.fecha }}</span>
-                  </span>
-                        {{ item.tension }}
+                        <span class="username">
+                            <span v-if="item.operador">{{ item.operador.name }}</span>
+                            <span v-else>Desconocido</span>
+                            <span class="text-muted">{{ item.fecha }} - {{ item.hora }}</span>
+                        </span>
+                        {{ item.texto }}
                     </div>
                 </div>
             </div>
             <!-- Empty-->
             <div v-else class="box-comment">
-                No hay registros de tension
+                No hay observaciones registradas
             </div>
             <!-- Create-->
             <div>
-                <input v-model="newTension" v-on:keyup.enter="onEnter" type="number" class="form-control input-sm" placeholder="Registrar tension actual">
+                <input v-model="inputCreate" v-on:keyup.enter="onEnter" type="text" class="form-control input-sm" placeholder="Redacte una observacion">
             </div>
         </div>
     </div>
@@ -43,16 +44,15 @@
             return {
                 networkError: false,
                 apiRoute: '',
-                tensionList: {
+                apiList: {
                     data:[]
                 },
-                newTension: '',
+                inputCreate: ''
             }
         },
         created:function(){
-            this.apiRoute = `${this.$apiIngress}/controldestencil/v1/tension`;
+            this.apiRoute = `${this.$apiIngress}/controldestencil/v1/observaciones`;
             this.apiListByCodigo()
-
         },
         computed:{
         },
@@ -66,7 +66,7 @@
                     if(response.data.error) {
                         swal("Error", response.data.error, "error");
                     } else {
-                        el.tensionList = response.data;
+                        el.apiList = response.data;
                     }
                 }).catch(function(error) {
                     if (!error.status) {
@@ -93,7 +93,7 @@
                 let route = `${this.apiRoute}/create`;
                 let params = {
                     'codigo' : this.codigo,
-                    'tension' : this.newTension,
+                    'texto' : this.inputCreate,
                 };
 
                 axios.post(route,params).then(function(response){
@@ -104,7 +104,7 @@
                             icon: "success"
                         });
                         el.apiListByCodigo();
-                        el.newTension = '';
+                        el.inputCreate = '';
                     }
                 });
             },

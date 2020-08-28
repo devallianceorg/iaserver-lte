@@ -32,3 +32,7 @@ Vue.component('aoicollector-prod-stocker', require('./component/aoicollector/wid
 
 Vue.component('home-lte', require('./component/HomeLte.vue').default);
 Vue.component('controldestencil-tension-abm', require('./component/controldestencil/tension/TensionAbm.vue').default);
+Vue.component('controldestencil-observaciones-abm', require('./component/controldestencil/observaciones/ObservacionesAbm.vue').default);
+Vue.component('controldestencil-observaciones-abm-table', require('./component/controldestencil/observaciones/ObservacionesAbmTable.vue').default);
+Vue.component('controldestencil-lavados-abm-table', require('./component/controldestencil/lavados/LavadosAbmTable.vue').default);
+Vue.component('controldestencil-stencil-abm-table', require('./component/controldestencil/stencil/StencilAbmTable.vue').default);

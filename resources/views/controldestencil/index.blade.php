@@ -55,74 +55,8 @@
             <!-- /.box-body -->
         </div>
 
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">
-                    @if(request('codigo') || request('keyword'))
-                        Resultado de busqueda: {{ request('codigo') }} {{ request('keyword') }}
-                    @else
-                        Lista de stenciles
-                    @endif
-                </h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-                <table class="table table-striped">
-                    <tbody><tr>
-                        <th>Codigo</th>
-                        <th>Ubicacion</th>
-                        <th>Modelo</th>
-                        <th>Placa</th>
-                        <th>Lado</th>
-                        <th>Grabado</th>
-                        <th>Job / Serie</th>
-                        <th>Cliente</th>
-                        <th>PCB</th>
-                        <th>Notas</th>
-                        <th>Usos</th>
-                        <th>Fecha de ingreso</th>
-                    </tr>
-                    @if(!$stenciles)
-                        <tr>
-                           <td>
-                               <code>
-                                   Error al obtener datos
-                               </code>
-                           </td>
-                        </tr>
-                    @else
-                        @forelse($stenciles['data'] as $item)
-                        <tr>
-                            <td><a href="{{ url('/controldestencil/detalle',$item['codigo']) }}">{{ $item['codigo'] }}</a></td>
-                            <td>{{ $item['ubicacion']['codigo_ubicacion'] }}</td>
-                            <td>{{ $item['modelo'] }}</td>
-                            <td>{{ $item['placa'] }}</td>
-                            <td>{{ $item['lado'] }}</td>
-                            <td>{{ $item['serie'] }}</td>
-                            <td>{{ $item['job'] }}</td>
-                            <td>{{ $item['cliente'] }}</td>
-                            <td>{{ $item['pcb'] }}</td>
-                            <td>{{ $item['observaciones_count'] }}</td>
-                            <td>{{ $item['usos'] }}</td>
-                            <td>{{ $item['ingreso'] }}</td>
-                            @rol('superadmin')
-                            <td style="width:70px;">
-                                <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                            </td>
-                            @endrol
-                        </tr>
-                            @empty
-                            <tr>
-                                <td>
-                                    No hay resultados
-                                </td>
-                            </tr>
-                        @endforelse
-                    @endif
-                    </tbody></table>
-            </div>
-            <!-- /.box-body -->
-        </div>
+        <controldestencil-stencil-abm-table codigo="{{ request('codigo') }}" search="{{ request('keyword') }}"></controldestencil-stencil-abm-table>
+
     </section>
     <!-- /.content -->
 @endsection
