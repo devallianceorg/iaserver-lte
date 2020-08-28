@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Lista de Stenciles</h3>
+            <h3 class="box-title">Lista de Stenciles {{filterfindByCodigo}} {{filterfindByKeyword}}</h3>
         </div>
         <div v-if="networkError" class="callout callout-danger">
             <h4>Network error</h4>
@@ -67,7 +67,10 @@
                 apiRoute: '',
                 apiFetchResponse: {
                     data:[]
-                }
+                },
+                // Search options
+                filterByCodigo: '',
+                filterByKeyword: '',
             }
         },
         created:function(){
@@ -75,15 +78,52 @@
             this.apiFetch();
         },
         computed:{
+            filterfindByCodigo() {
+                this.filterByCodigo = store.state.controldestencil.filterFindByCodigo;
+                return this.filterByCodigo;
+            },
+            filterfindByKeyword() {
+                this.filterByKeyword = store.state.controldestencil.filterFindByKeyword;
+                return this.filterByKeyword;
+            }
         },
         watch:{
+            filterByCodigo: function (codigo) {
+                if(!_.isEmpty(codigo)) {
+                    this.apiFetchByCodigo(codigo);
+                }
+            },
+            filterByKeyword: function (keyword) {
+                if(!_.isEmpty(keyword)) {
+                    this.apiFetchByKeyword(keyword);
+                }
+            }
         },
         methods:{
             apiFetch() {
-                let el = this;
                 let route = `${this.apiRoute}`;
+                this.apiDoFetch(route);
+            },
+            apiFetchByCodigo(codigo) {
+                let route = `${this.apiRoute}`;
+                this.apiDoFetch(route,{
+                    params: {
+                        codigo:codigo
+                    }
+                });
+            },
+            apiFetchByKeyword(keyword) {
+                let route = `${this.apiRoute}`;
+                this.apiDoFetch(route,{
+                    params: {
+                        keyword:keyword
+                    }
+                });
+            },
+            apiDoFetch(route,params) {
+                let el = this;
                 el.loading = true;
-                axios.get(route).then(function(response){
+                axios.get(route,params).then(function(response){
                     if(response.data.error) {
                         swal("Error", response.data.error, "error");
                     } else {

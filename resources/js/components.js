@@ -36,3 +36,4 @@ Vue.component('controldestencil-observaciones-abm', require('./component/control
 Vue.component('controldestencil-observaciones-abm-table', require('./component/controldestencil/observaciones/ObservacionesAbmTable.vue').default);
 Vue.component('controldestencil-lavados-abm-table', require('./component/controldestencil/lavados/LavadosAbmTable.vue').default);
 Vue.component('controldestencil-stencil-abm-table', require('./component/controldestencil/stencil/StencilAbmTable.vue').default);
+Vue.component('controldestencil-stencil-abm-filter', require('./component/controldestencil/stencil/StencilAbmFilter.vue').default);
