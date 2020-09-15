@@ -39,9 +39,7 @@ class TrazabilidadView extends Controller
       $op = collect($response);
 
       return view('trazabilidad.index',$op);
-    }
-
-    
+    } 
 
     
 }

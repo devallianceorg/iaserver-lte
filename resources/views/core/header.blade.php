@@ -63,6 +63,23 @@
                     </li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="">
+                    <i class="fa fa-eye"></i> <span>Calidad</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('controldecalidad.lanzamientos') }}">
+                            <i class="fa fa-paper-plane"></i> <span>Lanzamientos</span>
+                        </a>
+                    </li>
+                    <li disabled>
+                        <a href="" disabled>
+                            <i class="fa fa-bug"></i> <span>Cuarentena</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li>
                 <a href="{{ url('/npmpicker') }}">
                     <i class="fa fa-signal"></i> <span>Control de pickups</span>
@@ -127,6 +144,11 @@
             <li>
                 <a href="{{ url('/controldeplacas') }}">
                     <i class="fa fa-exchange"></i> <span>Control de Placas</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/memorias') }}">
+                    <i class="fa fa-film"></i> <span>Grabación de Memorias</span>
                 </a>
             </li>
         </ul>
