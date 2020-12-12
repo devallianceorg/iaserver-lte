@@ -37,3 +37,8 @@ Vue.component('controldestencil-observaciones-abm-table', require('./component/c
 Vue.component('controldestencil-lavados-abm-table', require('./component/controldestencil/lavados/LavadosAbmTable.vue').default);
 Vue.component('controldestencil-stencil-abm-table', require('./component/controldestencil/stencil/StencilAbmTable.vue').default);
 Vue.component('controldestencil-stencil-abm-filter', require('./component/controldestencil/stencil/StencilAbmFilter.vue').default);
+
+// CONTROL DE CALIDAD
+Vue.component('controldecalidad-lanzamientos-reporte', require('./component/controldecalidad/lanzamientos/Reporte.vue').default);
+Vue.component('controldecalidad-cuarentena-home', require('./component/controldecalidad/cuarentena/Home.vue').default);
+// / CONTROL DE CALIDAD

@@ -3,13 +3,17 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-import produccion from './model/produccion'
 import controldestencil from './module/controldestencil'
+import lanzamientos from './module/lanzamientos'
+import produccion from './module/produccion'
+import cuarentena from './module/cuarentena'
 
 const store = new Vuex.Store({
   modules: {
-    produccion: produccion,
-    controldestencil: controldestencil
+    produccion,
+    controldestencil,
+    lanzamientos,
+    cuarentena
   }
 });
 

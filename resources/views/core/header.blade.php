@@ -73,8 +73,8 @@
                             <i class="fa fa-paper-plane"></i> <span>Lanzamientos</span>
                         </a>
                     </li>
-                    <li disabled>
-                        <a href="" disabled>
+                    <li>
+                        <a href="{{ route('controldecalidad.cuarentena') }}">
                             <i class="fa fa-bug"></i> <span>Cuarentena</span>
                         </a>
                     </li>
